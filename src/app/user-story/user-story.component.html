@@ -1,0 +1,34 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Nieuwe User Story</mat-card-title>
+    <mat-form-field appearance="fill">
+      <mat-label>ID</mat-label>
+      <input matInput [(ngModel)]="newStory.id">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Naam</mat-label>
+      <input matInput [(ngModel)]="newStory.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Story Points</mat-label>
+      <input matInput type="number" [(ngModel)]="newStory.storyPoints">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addStory()">Toevoegen</button>
+  </mat-card>
+
+  <mat-list>
+    @for (story of stories; track story.id) {
+    <mat-list-item>
+      <div class="story-item">
+        <span>{{ story.id }} - {{ story.name }} ({{ story.storyPoints }} punten)</span>
+        <button mat-icon-button color="accent" (click)="editStory(story)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteStory(story.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+    }
+  </mat-list>
+</div>
